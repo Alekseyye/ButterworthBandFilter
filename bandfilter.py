@@ -96,3 +96,12 @@ ax3.grid(True)
 
 plt.tight_layout()
 plt.show()
+
+# расчёт требуемой сетки вычислителя
+max_value = np.max(sig)
+min_value = np.min(sig)
+quantization_error = sig - filtsigreal    # ошибка, возникающая при квантовании сигнала
+difference = np.max([max_value - min_value, quantization_error])
+log_difference = np.log2(difference)
+bit_depth = np.ceil(log_difference / np.log2(2))
+print("Required bit depth:", bit_depth)
